@@ -30,6 +30,10 @@ s1:NewButton("Shindo Life [SL]", "A script hub for shindo life", function()
 	loadstring(game:HttpGet("https://bruh.keshsenpai.com/.lua"))()
 end)
 
+s1:NewButton("Noob Speed [HUB]", "A separate script hub I made", function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/i3Crk/NoobSpeed/main/output.lua"))()
+end)
+
 local t2 = w:NewTab("Player")
 s2 = t2:NewSection("Humanoid")
 
