@@ -1,7 +1,7 @@
 --kavo lib
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 
-local w = Library.CreateLib("Suskeetch v1.0", "BloodTheme")
+local w = lib.CreateLib("Suskeetch v1.0", "BloodTheme")
 
 --//Variables
 local speed = false
