@@ -6,6 +6,17 @@ local w = lib.CreateLib("Suskeetch v1.0", "BloodTheme")
 --//Variables
 local speed = false
 local jump = false
+local themes = {
+	"BloodTheme",
+	"LightTheme",
+	"DarkTheme",
+	"GrapeTheme",
+	"Ocean",
+	"Midnight",
+	"Sentinel",
+	"Synapse",
+	"Serpent"
+}
 
 local t1 = w:NewTab("Main")
 local s1 = t1:NewSection("Scripts")
@@ -72,3 +83,81 @@ s2:NewSlider("Jump Power", "changes your jump height", 250, 50, function(s)
 		game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
 	end
 end)
+
+local t3 = w:NewTab("Your Bizarre Adventure")
+local s3 = t3:NewSection("YBA Scripts")
+
+s3:NewButton("Item ESP", "pretty good item esp", function()
+	if not pcall(function() return syn.protect_gui end) then
+		syn = {}
+		syn.protect_gui = function(egg)
+			egg.Parent = game.CoreGui
+		end
+	end
+	loadstring(game:HttpGet("https://gist.githubusercontent.com/Chrrxs/d2dfdcde75c2d11b173aa664c0a6b755/raw", true))()
+end)
+
+s3:NewButton("Level Autofarm", "lets you spam tp and attack npcs ig", function()
+	loadstring(game:HttpGet('https://gist.githubusercontent.com/stellar-4242/090eac215b54e6520097aea444b9f530/raw/48e54416196937bae43e16036e1b59882d6f736c/autofarm.lua'))()
+end)
+
+s3:NewDropdown("Sell One", "select item to sell one of", {"Rokakaka","Gold Coin","Diamond","Mysterious Arrow","Pure Rokakaka","Quinton's Glove","Ancient Scroll","Steel Ball","Stone Mask","Zepellin's Headband","Rib Cage of The Saint's Corpse", "DEO's Diary"}, function(currentOption)
+	if game.Players.LocalPlayer.Backpack[currentOption] then
+		game.Players.LocalPlayer.Backpack[currentOption].Parent = game.Players.LocalPlayer.Character
+		local args = {
+			[1] = "EndDialogue",
+			[2] = {
+				["NPC"] = "Merchant",
+				["Option"] = "Option1",
+				["Dialogue"] = "Dialogue5"
+			}
+		}
+		game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer(unpack(args))
+	end
+end)
+
+
+s3:NewDropdown("Sell All", "select item to sell all of", {"Rokakaka","Gold Coin","Diamond","Mysterious Arrow","Pure Rokakaka","Quinton's Glove","Ancient Scroll","Steel Ball","Stone Mask","Zepellin's Headband","Rib Cage of The Saint's Corpse", "DEO's Diary"}, function(currentOption)
+	if game.Players.LocalPlayer.Backpack[currentOption] then
+		game.Players.LocalPlayer.Backpack[currentOption].Parent = game.Players.LocalPlayer.Character
+		local args = {
+			[1] = "EndDialogue",
+			[2] = {
+				["NPC"] = "Merchant",
+				["Option"] = "Option2",
+				["Dialogue"] = "Dialogue5"
+			}
+		}
+		game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer(unpack(args))
+	end
+end)
+
+s3:NewButton("Arcade", "rolls arcade without actually going there", function()
+	local args = {
+		[1] = "EndDialogue",
+		[2] = {
+			["NPC"] = "Item Machine",
+			["Option"] = "Option1",
+			["Dialogue"] = "Dialogue1"
+		}
+	}
+
+	game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer(unpack(args))
+end)
+
+s3:NewButton("Stand Pilot [WIP]", "it kills you since stand pilot is semi patched, im trying to find a bypass", function()
+	local root = game.Players.LocalPlayer.Character.LowerTorso.Root
+	local ac = game.Players.LocalPlayer.Character:FindFirstChild("StandMorph").AnimationController
+	root.Part0 = nil
+	root.Part1 = nil
+	ac:Destroy()
+end)
+
+local t4 = w:NewTab("Customize")
+local s4 = t4:NewSection("Theme")
+
+for theme, color in pairs(themes) do
+	s4:NewColorPicker(theme, "Change your "..theme, color, function(color3)
+		lib:ChangeColor(theme, color3)
+	end)
+end
