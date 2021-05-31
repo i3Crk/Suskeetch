@@ -11,60 +11,60 @@ local t1 = w:NewTab("Main")
 local s1 = t1:NewSection("Scripts")
 
 s1:NewButton("Xenon [YBA]", "A script hub for Your Bizarre Adventure", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Chad-Thundercock/YBA/main/Autofarm"))();
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Chad-Thundercock/YBA/main/Autofarm"))();
 end)
 
 s1:NewButton("Owl Hub [FPS]", "Script hub for first person shooter games", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/GtudyLtE"))();
+	loadstring(game:HttpGet("https://pastebin.com/raw/GtudyLtE"))();
 end)
 
 s1:NewButton("Funky Friday [FNF]", "A script hub for funky friday", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Kyron14-max/Lunatic/main/init.lua"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Kyron14-max/Lunatic/main/init.lua"))()
 end)
 
 s1:NewButton("Blox Fruits [BF]", "A script hub for blox fruits", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/NukeVsCity/crack/main/hub2"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/NukeVsCity/crack/main/hub2"))()
 end)
 
 s1:NewButton("Shindo Life [SL]", "A script hub for shindo life", function()
-    loadstring(game:HttpGet("https://bruh.keshsenpai.com/.lua"))()
+	loadstring(game:HttpGet("https://bruh.keshsenpai.com/.lua"))()
 end)
 
 local t2 = w:NewTab("Player")
 s2 = t2:NewSection("Humanoid")
 
 s2:NewToggle("Speed Toggle", "Toggles speed power", function(state)
-    if state then
-        speed = true
-    else
-        speed = false
-        if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed ~= 16 then
-          game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
-        end
-    end
+	if state then
+		speed = true
+	else
+		speed = false
+		if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed ~= 16 then
+			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+		end
+	end
 end)
 
 s2:NewSlider("Speed Power", "changes your speed", 250, 16, function(s)
-  while speed == true
-    game:GetService("RunService").RenderStepped:wait()
-    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
-    end
+	while speed == true do
+		game:GetService("RunService").RenderStepped:wait()
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+	end
 end)
 
 s2:NewToggle("Jump Toggle", "Toggles jump power", function(state)
-    if state then
-        jump = true
-    else
-        jump = false
-        if game.Players.LocalPlayer.Character.Humanoid.JumpPower ~= 50 then
-          game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
-        end
-    end
+	if state then
+		jump = true
+	else
+		jump = false
+		if game.Players.LocalPlayer.Character.Humanoid.JumpPower ~= 50 then
+			game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+		end
+	end
 end)
 
 s2:NewSlider("Jump Power", "changes your jump height", 250, 50, function(s)
-  while jump == true
-    game:GetService("RunService").RenderStepped:wait()
-    game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
-    end
+	while jump == true do
+		game:GetService("RunService").RenderStepped:wait()
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
+	end
 end)
