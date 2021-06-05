@@ -1,22 +1,29 @@
 --kavo lib
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 
-local w = lib.CreateLib("Suskeetch v1.1", "BloodTheme")
-
 --//Variables
 local speed = false
 local jump = false
-local themes = {
-	"BloodTheme",
-	"LightTheme",
-	"DarkTheme",
-	"GrapeTheme",
-	"Ocean",
-	"Midnight",
-	"Sentinel",
-	"Synapse",
-	"Serpent"
+
+--//Configuration
+getgenv().OwO = {
+	theme = "BloodTheme", --BloodTheme, LightTheme, DarkTheme, GrapeTheme, Ocean, Midnight, Sentinel, Synapse, Serpent
+	
+	key = "" --Key you received from 3Crk
 }
+
+local keys = {
+	"9Crk",
+	"bakabaddiekeetch69420"
+}
+
+if keys[OwO[key]] then
+	print("Whitelisted!")
+else
+	script:Destroy()
+end
+
+local w = lib.CreateLib("Suskeetch v1.2", OwO[theme])
 
 local t1 = w:NewTab("Main")
 local s1 = t1:NewSection("Scripts")
@@ -153,11 +160,90 @@ s3:NewButton("Stand Pilot [WIP]", "it kills you since stand pilot is semi patche
 	ac:Destroy()
 end)
 
+s3:NewToggle("Auto Stand", "Automatically uses rokas and arrows if you have them.", function(state)
+	if state then
+		while state do
+		--Check if no stand, if no stand set skill tree
+		if not game.Players.LocalPlayer.Character:FindFirstChild("SummonedStand") then
+	local args = {
+		[1] = "LearnSkill",
+		[2] = {
+			["Skill"] = "Vitality I",
+			["SkillTreeType"] = "Character"
+		}
+	}
+				game:GetService("Players").LocalPlayer.Character.RemoteFunction:InvokeServer(unpack(args))
+				wait()
+	local args2 = {
+		[1] = "LearnSkill",
+		[2] = {
+			["Skill"] = "Vitality II",
+			["SkillTreeType"] = "Character"
+		}
+	}
+				game:GetService("Players").LocalPlayer.Character.RemoteFunction:InvokeServer(unpack(args2))
+				wait()
+	local args3 = {
+		[1] = "LearnSkill",
+		[2] = {
+			["Skill"] = "Vitality III",
+			["SkillTreeType"] = "Character"
+		}
+	}
+				game:GetService("Players").LocalPlayer.Character.RemoteFunction:InvokeServer(unpack(args3))
+				wait()
+	local args4 = {
+		[1] = "LearnSkill",
+		[2] = {
+			["Skill"] = "Worthiness I",
+			["SkillTreeType"] = "Character"
+		}
+	}
+				game:GetService("Players").LocalPlayer.Character.RemoteFunction:InvokeServer(unpack(args4))
+				wait()
+			local args5 = {
+				[1] = "LearnSkill",
+				[2] = {
+					["Skill"] = "Worthiness II",
+					["SkillTreeType"] = "Character"
+				}
+			}
+				game:GetService("Players").LocalPlayer.Character.RemoteFunction:InvokeServer(unpack(args5))
+				wait()
+				--uses arrow
+				if game.Players.LocalPlayer.Backpack:FindFirstChild("Mysterious Arrow") then
+					game.Players.LocalPlayer.Backpack:FindFirstChild("Mysterious Arrow").Parent = game.Players.LocalPlayer.Character
+				end
+			local args = {
+				[1] = "EndDialogue",
+				[2] = {
+					["NPC"] = "Mysterious Arrow",
+					["Dialogue"] = "Dialogue1"
+				}
+			}
+			game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer(unpack(args))
+				game.Players.LocalPlayer.Character:WaitForChild("SummonedStand")
+				wait(2)
+			elseif game.Players.LocalPlayer.Character:FindFirstChild("SummonedStand") then
+				if game.Players.LocalPlayer.Backpack:FindFirstChild("Rokakaka") then
+					game.Players.LocalPlayer.Backpack:FindFirstChild("Rokakaka").Parent = game.Players.LocalPlayer.Character
+				end
+				local args = {
+					[1] = "EndDialogue",
+					[2] = {
+						["NPC"] = "Rokakaka",
+						["Dialogue"] = "Dialogue1"
+					}
+				}
+				game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer(unpack(args))
+			end
+		end
+	else
+		print("auto stand off")
+	end
+end)
+
+
+
 local t4 = w:NewTab("Customize")
 local s4 = t4:NewSection("Theme")
-
-for theme, color in pairs(themes) do
-	s4:NewColorPicker(theme, "Change your "..theme, color, function(color3)
-		lib:ChangeColor(theme, color3)
-	end)
-end
