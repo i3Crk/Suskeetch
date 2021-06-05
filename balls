@@ -5,13 +5,6 @@ local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Ka
 local speed = false
 local jump = false
 
---//Configuration
-getgenv().OwO = {
-	theme = "BloodTheme", --BloodTheme, LightTheme, DarkTheme, GrapeTheme, Ocean, Midnight, Sentinel, Synapse, Serpent
-	
-	key = "" --Key you received from 3Crk
-}
-
 local keys = {
 	"9Crk",
 	"bakabaddiekeetch69420"
